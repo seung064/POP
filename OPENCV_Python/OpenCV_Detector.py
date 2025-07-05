@@ -24,58 +24,58 @@ def run_camera1():
     conn, addr = server_socket.accept() ## 클라이언트 연결 수락
     print("연결됨:", addr)
     
-    detected_qrcode = False
+    processed_qr_codes = set()
 
     while True:
         ret, frame = videocapture.read()
         if not ret:
             break
 
-        if not detected_qrcode: ## QR 코드가 인식되지 않은 경우에만 실행
-            for code in pyzbar.decode(frame):
-                
-                qrcode_data = code.data.decode('utf-8') 
-                print("인식 성공 :", qrcode_data)
+        #if not detected_qrcode: ## QR 코드가 인식되지 않은 경우에만 실행
+        for code in pyzbar.decode(frame):
+            
+            qrcode_data = code.data.decode('utf-8') 
+            print("인식 성공 :", qrcode_data)
 
-                qr_info = json.loads(qr_info)
-                
-                ## dict에 위치, 불량검출, 현재시간 추가
+            if pk not in processed_qr_codes: ## 이미 처리된 QR 코드인지 확인
+            ## dict에 위치, 불량검출, 현재시간 추가
                 inspection_info={
                     "location" : "1",
-                    "datetime" : datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "datetime(1차)" : datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     #"status" : # 나중에 추가 예정
                 }
 
-                pk = qr_info["PK"]
-                qr_info = {
+                qr_info = json.loads(qrcode_data) ## QR 코드 데이터를 Dict으로 변환
+                pk = qr_info["PK"] ## PK 값 추출
+
+                ## QR코드 정보와 검사 정보 합침
+                qr_info1 = {
                     pk : {**qr_info, **inspection_info}
                 }
 
-                #qr_info = {**json.loads(qrcode_data), **inspection_info} ## QR코드 데이터와 검사 정보를 합침
-                print("QR 코드 정보:", qr_info)
+                processed_qr_codes.add(pk) ## QR 코드가 처리되었음을 기록
 
-                #print("rect:", code.rect)
-                detected_qrcode = True
-                
-                # QR 코드의 위치에 사각형 그리기
-                #x, y, w, h = code.rect
-                #cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                
-                # QR 코드 데이터 표시
-                #cv2.putText(frame, qrcode_data, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+            #qr_info = {**json.loads(qrcode_data), **inspection_info} ## QR코드 데이터와 검사 정보를 합침
+            print("QR 코드 정보:", qr_info1) # 디버깅용 출력
+            
+            
+            # QR 코드 데이터 표시
+            #cv2.putText(frame, qrcode_data, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         
-        ##cv2.imshow('IVCam Feed', frame) ## 'IVCam Feed' 창에 비디오 스트림 표시
-        ## imshow 대신 프레임을 전송
-        data = pickle.dumps(frame) 
+        ##cv2.imshow('IVCam Feed', frame) ## 'IVCam Feed' 창에 비디오 스트림 표시 ## imshow 대신 프레임을 전송
+        data = pickle.dumps(frame)
         size = struct.pack(">L", len(data))
         conn.sendall(size + data)
         
 
+        # 종료조건
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    videocapture.release()
+    videocapture.release() # 카메라 해제
     conn.close() ## 소켓 연결 종료
+    
     cv2.destroyAllWindows()
     
 if __name__ == "__main__":
@@ -86,3 +86,4 @@ if __name__ == "__main__":
 ##pip install playsound (비프음 재생)
 ##pip install cvzone (QR코드 추적 감지 기능) 
 ##pip install numpy 연산처리
+
