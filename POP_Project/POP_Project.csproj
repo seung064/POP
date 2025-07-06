@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\chip_mounter.png" />
+    <None Remove="Resources\PCB_loader.png" />
+    <None Remove="Resources\reflow_oven.png" />
+    <None Remove="Resources\screen_printer.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="MySql.Data" Version="9.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\chip_mounter.png" />
+    <Resource Include="Resources\PCB_loader.png" />
+    <Resource Include="Resources\reflow_oven.png" />
+    <Resource Include="Resources\screen_printer.png" />
+  </ItemGroup>
+
+</Project>
