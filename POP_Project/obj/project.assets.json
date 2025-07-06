@@ -1674,11 +1674,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\POP_Project\\POP_Project.csproj",
+      "projectUniqueName": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\POP_Project.csproj",
       "projectName": "POP_Project",
-      "projectPath": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\POP_Project\\POP_Project.csproj",
+      "projectPath": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\POP_Project.csproj",
       "packagesPath": "C:\\Users\\codingOn24\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\POP_Project\\obj\\",
+      "outputPath": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
