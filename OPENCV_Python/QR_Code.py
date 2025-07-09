@@ -1,34 +1,32 @@
-## QR코드 생성
-## 
-
+## QR코드 생성 
 import qrcode
 import json
 import os
 
-output_dir = r"C:\Users\gli05\Desktop\POP\POP\QR_Data" 
+output_dir = r"C:\Users\o\Desktop\POP\POP\QR_data" 
 
 qr_dict ={}
 
 
 for i in range(1, 50):
-    serial = f"P{i:03}"  # P001, P002...
-    Name = f"PCB{i}"   # 기기 이름
+    qrcode_id = f"{i}" 
+    name = f"PCB{i}"   # 기기 이름
     
     # QR 생성
-    qr = qrcode.make(serial)
-    qr_filename = os.path.join(output_dir, f"QR_{serial}.png")
+    qr = qrcode.make(qrcode_id)
+    qr_filename = os.path.join(output_dir, f"QR_{qrcode_id}.png")
     qr.save(qr_filename)
     
     # 사전 정보 dict로 저장
     qr_info = {
-        "PK": serial,
-        "Name": Name
+        "qrcode": qrcode_id,
+        "name": name
     }
 
     # json에 저장 (PK를 키로)
-    qr_dict[serial] = {
-        "PK": serial,
-        "Name": Name}
+    qr_dict[qrcode_id] = {
+        "qrcode": qrcode_id,
+        "name": name}
     
 
 # JSON 파일로 저장 (한 번에 전체 저장)
