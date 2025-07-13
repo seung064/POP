@@ -7,12 +7,12 @@ import pickle
 import struct
 import datetime
 import mysql.connector
+from ultralytics import YOLO
 
+inspection_second_model = YOLO('./inspection_second_best.pt')
 
 ## 스마트폰 카메라를 사용하여 QR 코드 인식 및 디코딩
 def run_camera1():
-
-   
     #videocapture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     #videocapture = cv2.VideoCapture(0) ## 카메라 장치 열기 (0은 기본 카메라)
     
@@ -23,7 +23,6 @@ def run_camera1():
     print("viewer.py 연결 대기 중...")
     conn, addr = server_socket.accept() ## 클라이언트 연결 수락
     print("연결됨:", addr)
-    
     
     videocapture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     try:
@@ -39,11 +38,9 @@ def run_camera1():
     except mysql.connector.Error as e:
         print(f"DB 연결 오류: {e}")
         return
-    #1 processed_qr_codes = set()
     
     qr_info = {}
     
-
     while True:
         ret, frame = videocapture.read()
         if not ret:
@@ -57,11 +54,13 @@ def run_camera1():
                 #qr_code = pyzbar.decode(frame)
                 qr_code = code.data.decode('utf-8') ## 미리 저장 해둔 데이터 디코딩
                 print("인식 성공 :", qr_code)
+
                 '''
                 qr_info = json.loads(qrcode) ## QR 코드 데이터를 Dict으로 변환
                 pk = qr_info["qrcode"] ## PK 값 추출
                 print("PK:",pk)
                 '''
+
                 cursor.execute("SELECT qr_code, name, location, time_first, time_second, status FROM defect WHERE qr_code = %s", (qr_code,))
                 qr_info = cursor.fetchone() ## DB에서 QR 코드 정보 조회
                 
@@ -91,13 +90,17 @@ def run_camera1():
                 #elif qr_info['location'] == '1':
                 #elif qr_info[qr_code].get('location')=='1': # 2차 검사
                     print("2차 검사 시작")
+
+                    inspection_second_results = inspection_second_model(frame, verbose=False) # 프레임 예측
+                    annotated_frame = inspection_second_results[0].plot()  # 결과 프레임
                     
-                    inspection_info_second = {
-                        "location": '2', 
-                        "time_second": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        "status": '완제품'
-                        #"결과" :
-                    }
+                    # inspection_info_second = {
+                    #     "location": '2', 
+                    #     "time_second": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    #     "status": '완제품'
+                    #     #"결과" :
+                    # }
+                    
                     # 기존 데이터에 2차 검수 정보를 업데이트
                     #qr_info[qr_code].update(inspection_info_second) 
                     
@@ -117,10 +120,11 @@ def run_camera1():
         #cv2.imshow('IVCam Feed', frame) ## 'IVCam Feed' 창에 비디오 스트림 표시 ## imshow 대신 프레임을 전송
         
         # opencv프레임 전송
-        data = pickle.dumps(frame)
+        data = pickle.dumps(annotated_frame)
+        #data = pickle.dumps(frame)
         size = struct.pack(">L", len(data))
         conn.sendall(size + data)
-        
+
         # 종료조건
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
