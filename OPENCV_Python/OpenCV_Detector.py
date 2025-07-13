@@ -53,6 +53,7 @@ def run_camera1():
         #1 if not detected_qrcode: ## QR 코드가 인식되지 않은 경우에만 실행
         for code in pyzbar.decode(frame):
             try:
+                
                 #qr_code = pyzbar.decode(frame)
                 qr_code = code.data.decode('utf-8') ## 미리 저장 해둔 데이터 디코딩
                 print("인식 성공 :", qr_code)
@@ -61,43 +62,46 @@ def run_camera1():
                 pk = qr_info["qrcode"] ## PK 값 추출
                 print("PK:",pk)
                 '''
-                cursor.execute("SELECT qr_code, name FROM defect WHERE qr_code = %s", (qr_code,))
+                cursor.execute("SELECT qr_code, name, location, time_first, time_second, status FROM defect WHERE qr_code = %s", (qr_code,))
                 qr_info = cursor.fetchone() ## DB에서 QR 코드 정보 조회
-                #1 if pk not in processed_qr_codes: ## 이미 처리된 QR 코드인지 확인
-                if qr_code not in qr_info: # 1차 검사
+                
+                if qr_info['location'] is None or qr_info['location'] == '':
+                #if qr_info is not None:
+                    #if qr_info[2] is None or qr_info[2] == '':
+                    #if "location" not in qr_info: # 1차 검사
                     print("1차 검사 시작")
                     ## dict에 위치, 불량검출, 현재시간 추가
                     inspection_info_first={
-                        "location" : "1",
+                        "location" : '1',
                         "time_first" : datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        "status" : '1차완료(반제품)'
+                        "status" : '반제품'
                         #"결과" :
                     }
 
-                    ## QR코드 정보와 검사 정보 합침
-                    #1 qr_info1 = { pk : {**qr_info, **inspection_info}} 
+                    ## QR코드 정보와 검사 정보 합침 
 
                     qr_info[qr_code] = {**qr_info, **inspection_info_first} # QR 코드 정보와 검사 정보를 합쳐서 새로운 dict에 저장/**는 dict 병합 연산자
-                    #1 inspection_QR.add(pk) ## QR 코드가 처리되었음을 기록
 
-                    update_query = f"UPDATE defect SET location = '1', status = '1차완료(반제품)', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                    update_query = f"UPDATE defect SET location = '1', status = '반제품', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
                     cursor.execute(update_query, (qr_code,))
                     db_connection.commit() # 변경사항 최종 
-
-                elif qr_info[qr_code].get("location")=="1": # 2차 검사
+                
+                #elif qr_info[4] is None or qr_info[4] == '':
+                elif qr_info['location'] == 1:
+                #elif qr_info['location'] == '1':
+                #elif qr_info[qr_code].get('location')=='1': # 2차 검사
                     print("2차 검사 시작")
                     
                     inspection_info_second = {
-                        "location": "2", 
+                        "location": '2', 
                         "time_second": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        "status": '2차완료(완제품)'
+                        "status": '완제품'
                         #"결과" :
                     }
                     # 기존 데이터에 2차 검수 정보를 업데이트
-                    qr_info[qr_code].update(inspection_info_second) 
-                    #1 inspection_QR.add(pk) ## QR 코드가 처리되었음을 기록
+                    #qr_info[qr_code].update(inspection_info_second) 
                     
-                    update_query = f"UPDATE defect SET location = '2', status = '2차완료', time_second='{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                    update_query = f"UPDATE defect SET location = '2', status = '완제품', time_second='{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
                     cursor.execute(update_query, (qr_code,))
                     db_connection.commit() # 변경사항 최종 
 
@@ -105,7 +109,7 @@ def run_camera1():
                 print(f"에러 타입: {type(e)}")
                 print(f"에러 메시지: {e}")
                 #qr_info = {**json.loads(qrcode_data), **inspection_info} ## QR코드 데이터와 검사 정보를 합침
-            print("QR 코드 정보:", qr_info) # 디버깅용 출력
+                print("QR 코드 정보:", qr_info) # 디버깅용 출력
 
             # QR 코드 데이터 표시
             #cv2.putText(frame, qrcode_data, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
