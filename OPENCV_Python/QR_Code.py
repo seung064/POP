@@ -11,6 +11,7 @@ qr_dict ={}
 for i in range(1, 50):
     qrcode_id = f"{i}" 
     name = f"PCB{i}"   # 기기 이름
+    status = f"반제품"
     
     # QR 생성
     qr = qrcode.make(qrcode_id)
@@ -20,13 +21,40 @@ for i in range(1, 50):
     # 사전 정보 dict로 저장
     qr_info = {
         "qrcode": qrcode_id,
-        "name": name
+        "name": name,
+        "status": status
     }
 
     # json에 저장 (PK를 키로)
     qr_dict[qrcode_id] = {
         "qrcode": qrcode_id,
-        "name": name}
+        "name": name,
+        "status": status
+        }
+    
+for i in range(51, 100):
+    qrcode_id = f"{i}" 
+    name = f"PCB{i}"   # 기기 이름
+    status = f"완제품"
+    
+    # QR 생성
+    qr = qrcode.make(qrcode_id)
+    qr_filename = os.path.join(output_dir, f"QR_{qrcode_id}.png")
+    qr.save(qr_filename)
+    
+    # 사전 정보 dict로 저장
+    qr_info = {
+        "qrcode": qrcode_id,
+        "name": name,
+        "status": status
+    }
+
+    # json에 저장 (PK를 키로)
+    qr_dict[qrcode_id] = {
+        "qrcode": qrcode_id,
+        "name": name,
+        "status": status
+        }
     
 
 # JSON 파일로 저장 (한 번에 전체 저장)

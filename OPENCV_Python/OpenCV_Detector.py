@@ -9,8 +9,8 @@ import datetime
 import mysql.connector
 from ultralytics import YOLO
 import time
-qr_check_time = time.time()
-inspection_first_model = YOLO('./inspection_first_model.pt')
+#qr_check_time = time.time()
+inspection_first_model = YOLO('./inspection_first_best.pt')
 inspection_second_model = YOLO('./inspection_second_best.pt')
 
 ## 스마트폰 카메라를 사용하여 QR 코드 인식 및 디코딩
@@ -48,83 +48,138 @@ def run_camera1():
         if not ret:
             break
 
-        current_time = time.time()
+        #current_time = time.time()
 
-        if current_time - qr_check_time >=3: # 3초마다 실행
+        #if current_time - qr_check_time >=10: # n초 딜레이
 
             #1 if not detected_qrcode: ## QR 코드가 인식되지 않은 경우에만 실행
-            for code in pyzbar.decode(frame):
-                try:
+        for code in pyzbar.decode(frame):
+            try:
+                
+                #qr_code = pyzbar.decode(frame)
+                qr_code = code.data.decode('utf-8') ## 미리 저장 해둔 데이터 디코딩
+                print("인식 성공 :", qr_code)
+                time.sleep(2)
+                
+                '''
+                qr_info = json.loads(qrcode) ## QR 코드 데이터를 Dict으로 변환
+                pk = qr_info["qrcode"] ## PK 값 추출
+                print("PK:",pk)
+                '''
+
+                #cursor.execute("SELECT qr_code, name, location, time_defect, status FROM defect WHERE qr_code = %s", (qr_code,))
+                cursor.execute("SELECT qr_code, name, status, production_time, defective_or_not FROM product WHERE qr_code = %s", (qr_code,))
+                qr_info = cursor.fetchone() ## DB에서 QR 코드 정보 조회
+                
+                #if (qr_info['location'] is None or qr_info['location'] == '') and qr_info['status'] == '반제품':
+                if qr_info['status'] == '반제품':
+
+                    # 예외처리 또는 if문으로 qr이 찍혔을때+딜레이 줄것
+                    print("1차 검사 시작")
                     
-                    #qr_code = pyzbar.decode(frame)
-                    qr_code = code.data.decode('utf-8') ## 미리 저장 해둔 데이터 디코딩
-                    print("인식 성공 :", qr_code)
+                    inspection_first_results = inspection_first_model.predict(source=frame[:, :, ::-1], save=False, conf=0.5)
+                    for inspection_first_result in inspection_first_results: 
+                        boxes = inspection_first_result.boxes  # Boxes object
+                        if len(boxes) > 0:  
+                            for box in boxes:
+                                x1, y1, x2, y2 = map(int, box.xyxy[0])  # 좌표
+                                conf = float(box.conf[0])               # 신뢰도
+                                cls_id = int(box.cls[0])                # 클래스 ID
+                                cls_name = inspection_first_model.names[cls_id]          # 클래스 이름
+
+                                # 박스 그리기
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                                cv2.putText(frame, f"{cls_name} {conf:.2f}", (x1, y1 - 10),
+                                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                                
+                                print(f"Detected {cls_name} with confidence {conf:.2f} at [{x1}, {y1}, {x2}, {y2}]")
+                        
+                            #update_query = f"UPDATE product SET location = '1', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                            update_product_query = f"UPDATE product SET defective_or_not = '1', production_time = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                            update_defect_query = f"UPDATE defect SET location = '1', time_defect = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', class_defect = '{cls_name}' WHERE qr_code = %s"
+                            cursor.execute(update_product_query, (qr_code,))
+                            cursor.execute(update_defect_query, (qr_code,))
+                            db_connection.commit() # 변경사항 최종
+                            time.sleep(5)
+                        
+                        else:
+                            pass
+                            #update_query = f"UPDATE product SET location = '1', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                            #update_product_query = f"UPDATE product SET production_time = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                            #update_defect_query = f"UPDATE defect SET time_first = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', class_defect = '{cls_name}' WHERE qr_code = %s"
+                            #cursor.execute(update_product_query, (qr_code,))
+                            #cursor.execute(update_defect_query, (qr_code,))
+                            time.sleep(5)
+                        
+
+                    ## dict에 위치, 불량검출, 현재시간 추가
+                    # inspection_info_first={
+                    #     "location" : '1',
+                    #     "time_first" : datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    #     "status" : '반제품'
+                    #     #"결과" :
+                    # }
                     
-                    '''
-                    qr_info = json.loads(qrcode) ## QR 코드 데이터를 Dict으로 변환
-                    pk = qr_info["qrcode"] ## PK 값 추출
-                    print("PK:",pk)
-                    '''
+                    #update_query = f"UPDATE product SET location = '1', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                    #cursor.execute(update_query, (qr_code,))
+                    #db_connection.commit() # 변경사항 최종 
+                    #time.sleep(5)
+                
+                #elif qr_info[4] is None or qr_info[4] == '':
+                elif qr_info['location'] == 1 and qr_info['status'] == '완제품':
+                #elif qr_info['location'] == '1':
+                #elif qr_info[qr_code].get('location')=='1': # 2차 검사
+                    print("2차 검사 시작")
 
-                    cursor.execute("SELECT qr_code, name, location, time_first, time_second, status FROM defect WHERE qr_code = %s", (qr_code,))
-                    qr_info = cursor.fetchone() ## DB에서 QR 코드 정보 조회
+                    #inspection_second_results = inspection_second_model(frame, verbose=False) # 프레임 예측
+                    #second_annotated_frame = inspection_second_results[0].plot()  # 결과 프레임
+                    #frame = inspection_second_results[0].plot()  # 결과 프레임
+                    inspection_second_results = inspection_second_model.predict(source=frame[:, :, ::-1], save=False, conf=0.5)
+                    for inspection_second_result in inspection_second_results:
+                        boxes = inspection_second_result.boxes  # Boxes object
+                        if len(boxes) > 0:
+                            for box in boxes:
+                                x1, y1, x2, y2 = map(int, box.xyxy[0])  # 좌표
+                                conf = float(box.conf[0])               # 신뢰도
+                                cls_id = int(box.cls[0])                # 클래스 ID
+                                cls_name = inspection_second_model.names[cls_id]          # 클래스 이름
+
+                                # 박스 그리기
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                                cv2.putText(frame, f"{cls_name} {conf:.2f}", (x1, y1 - 10),
+                                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                                
+                                print(f"Detected {cls_name} with confidence {conf:.2f} at [{x1}, {y1}, {x2}, {y2}]")
                     
-                    if qr_info['location'] is None or qr_info['location'] == '':
-                    #if qr_info is not None:
-                        #if qr_info[2] is None or qr_info[2] == '':
-                        #if "location" not in qr_info: # 1차 검사
-                        print("1차 검사 시작")
+                            update_product_query = f"UPDATE product SET defective_or_not = '1' WHERE qr_code = %s"
+                            update_defect_query = f"UPDATE defect SET location = '2', time_defect = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', class_defect = '{cls_name}' WHERE qr_code = %s"
+                            cursor.execute(update_product_query, (qr_code,))
+                            cursor.execute(update_defect_query, (qr_code,))
+                            db_connection.commit() # 변경사항 최종 
+                            time.sleep(5)
 
-                        inspection_first_results = inspection_first_model(frame, verbose=False) # 프레임 예측
-                        #second_annotated_frame = inspection_second_results[0].plot()  # 결과 프레임
-                        frame = inspection_first_results[0].plot()  # 결과 프레임
-
-                        
-                        ## dict에 위치, 불량검출, 현재시간 추가
-                        # inspection_info_first={
-                        #     "location" : '1',
-                        #     "time_first" : datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        #     "status" : '반제품'
-                        #     #"결과" :
-                        # }
-
-                        ## QR코드 정보와 검사 정보 합침 
-
-                        qr_info[qr_code] = {**qr_info, **inspection_info_first} # QR 코드 정보와 검사 정보를 합쳐서 새로운 dict에 저장/**는 dict 병합 연산자
-
-                        update_query = f"UPDATE defect SET location = '1', status = '반제품', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
-                        cursor.execute(update_query, (qr_code,))
-                        db_connection.commit() # 변경사항 최종 
+                        else:
+                            pass
+                            time.sleep(5)
+                            
+                    # inspection_info_second = {
+                    #     "location": '2', 
+                    #     "time_second": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    #     "status": '완제품'
+                    #     #"결과" :
+                    # }
                     
-                    #elif qr_info[4] is None or qr_info[4] == '':
-                    elif qr_info['location'] == 1:
-                    #elif qr_info['location'] == '1':
-                    #elif qr_info[qr_code].get('location')=='1': # 2차 검사
-                        print("2차 검사 시작")
+                    # 기존 데이터에 2차 검수 정보를 업데이트
+                    #qr_info[qr_code].update(inspection_info_second) 
+                    
+                    #update_query = f"UPDATE defect SET location = '2', time_second='{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                    
 
-                        inspection_second_results = inspection_second_model(frame, verbose=False) # 프레임 예측
-                        #second_annotated_frame = inspection_second_results[0].plot()  # 결과 프레임
-                        frame = inspection_second_results[0].plot()  # 결과 프레임
-                        
-                        # inspection_info_second = {
-                        #     "location": '2', 
-                        #     "time_second": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        #     "status": '완제품'
-                        #     #"결과" :
-                        # }
-                        
-                        # 기존 데이터에 2차 검수 정보를 업데이트
-                        #qr_info[qr_code].update(inspection_info_second) 
-                        
-                        update_query = f"UPDATE defect SET location = '2', status = '완제품', time_second='{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
-                        cursor.execute(update_query, (qr_code,))
-                        db_connection.commit() # 변경사항 최종 
-
-                except Exception as e:
-                    print(f"에러 타입: {type(e)}")
-                    print(f"에러 메시지: {e}")
-                    #qr_info = {**json.loads(qrcode_data), **inspection_info} ## QR코드 데이터와 검사 정보를 합침
-                    print("QR 코드 정보:", qr_info) # 디버깅용 출력
+            except Exception as e:
+                print(f"에러 타입: {type(e)}")
+                print(f"에러 메시지: {e}")
+                #qr_info = {**json.loads(qrcode_data), **inspection_info} ## QR코드 데이터와 검사 정보를 합침
+                print("QR 코드 정보:", qr_info) # 디버깅용 출력
 
             # QR 코드 데이터 표시
             #cv2.putText(frame, qrcode_data, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
