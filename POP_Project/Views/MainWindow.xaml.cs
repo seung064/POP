@@ -38,7 +38,9 @@ namespace POP_Project
 
             MainFrame.Navigated += MainFrame_Navigated;
 
-            MainFrame.Navigate(new LoginPage(LoginVM));
+            //MainFrame.Navigate(new LoginPage(LoginVM));
+            MainFrame.Navigate(new MainPage(MainVM));  //DB연동 오류로 인해 로그인 스킵
+            MainVM.IsHamburgerVisible = true;
         }
 
         // LoginPage에서 햄버거 버튼 숨기기 (투명도 조정)

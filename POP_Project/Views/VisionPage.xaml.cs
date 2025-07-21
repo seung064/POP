@@ -28,11 +28,5 @@ namespace POP_Project.Views
             InitializeComponent();
             this.DataContext = new VisionViewModel();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        
     }
 }
