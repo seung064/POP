@@ -52,7 +52,7 @@ namespace POP_Project.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/POP_Project;V1.0.0.0;component/views/loginpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/POP_Project;component/views/loginpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\LoginPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

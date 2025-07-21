@@ -18,6 +18,8 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="MySql.Data" Version="9.3.0" />
+    <PackageReference Include="NModbus4" Version="2.1.0" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.7" />
   </ItemGroup>
 
   <ItemGroup>

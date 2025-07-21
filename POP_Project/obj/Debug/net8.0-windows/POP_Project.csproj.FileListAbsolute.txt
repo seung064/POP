@@ -46,3 +46,6 @@ C:\Users\codingOn24\Desktop\POP_Project\POP_Project\obj\Debug\net8.0-windows\Vie
 C:\Users\codingOn24\Desktop\POP_Project\POP_Project\obj\Debug\net8.0-windows\Views\VisionPage.g.cs
 C:\Users\codingOn24\Desktop\POP_Project\POP_Project\obj\Debug\net8.0-windows\Views\PerformancePage.baml
 C:\Users\codingOn24\Desktop\POP_Project\POP_Project\obj\Debug\net8.0-windows\Views\VisionPage.baml
+C:\Users\codingOn24\Desktop\POP_Project\POP_Project\obj\Debug\net8.0-windows\POP_Project.sourcelink.json
+C:\Users\codingOn24\Desktop\POP_Project\POP_Project\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\codingOn24\Desktop\POP_Project\POP_Project\bin\Debug\net8.0-windows\NModbus4.dll
