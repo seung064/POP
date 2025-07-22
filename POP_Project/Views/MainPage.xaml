@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:POP_Project.Views"
+      xmlns:c1="clr-namespace:C1.WPF.Gauge;assembly=C1.WPF.Gauge"
+      xmlns:c2="clr-namespace:C1.WPF.Chart;assembly=C1.WPF.Chart"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="900"
       Title="MainPage">
@@ -13,12 +15,88 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+
         <!-- 탭 컨트롤 -->
         <TabControl Height="400" Width="720">
             <!-- DashBoard 탭-->
             <TabItem Header="DashBoard" Width="180">
                 <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="174*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="123*"/>
+                            <ColumnDefinition Width="174*"/>
+                            <ColumnDefinition Width="174*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
+                        <TextBlock Text="목표" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_aim"
+                        Value="{Binding aim}"
+                        SweepAngle="360"
+                        StartAngle="0"                                          
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Margin="10"/>
+
+                        <TextBlock Text="설비 가동률" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                        <c1:C1RadialGauge x:Name="radialGauge"
+                        Value="{Binding Efficiency_sum}"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="2"
+                        Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                        <TextBlock Text="Line 1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_line1"
+                        Value="{Binding Efficiency}"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="4"
+                        Grid.Row="1"/>
+
+                        <TextBlock Text="Line 2" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_line2"
+                        Value="{Binding Efficiency}"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="5"
+                        Grid.Row="1"/>
+
+                        <TextBlock Text="인수인계" Grid.ColumnSpan="3" Grid.Row="3" Margin="150,10,0,10" HorizontalAlignment="Left"/>
+                        <TextBox Grid.Row="4" Grid.ColumnSpan="4" Width="320" Height="120" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                        <TextBlock Text="CONDITION" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" Margin="140,10,0,10" HorizontalAlignment="Left"/>
+                        <c2:FlexChart ChartType="Line" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2"
+                            ItemsSource="{Binding condition}"
+                            BindingX="Date"
+                            Height="120"
+                            Width="320"
+                            LegendPosition="Right" Margin="10"/>
+                    </Grid>
                 </StackPanel>
             </TabItem>
 
@@ -32,9 +110,20 @@
                     <!-- 파이차트 -->
                     <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <TextBlock Text="총 생산/목표" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
-                        <Border Width="150" Height="150" Background="White" BorderBrush="Black" BorderThickness="1" CornerRadius="75">
+                        <!--Border Width="150" Height="150" Background="White" BorderBrush="Black" BorderThickness="1" CornerRadius="75">
                             <TextBlock Text="DB 연동, 라이브러리 사용" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
+                        </Border-->
+                        <c1:C1RadialGauge x:Name="radialGauge_aim1"
+                                Value="{Binding aim}"
+                                SweepAngle="360" 
+                                StartAngle="0"
+                                IsReadOnly="True"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Width="150"
+                                Height="150"
+                                Grid.Column="1"
+                                Grid.Row="1"/>      
                     </StackPanel>
 
                     <!-- 생산 관련 정보 -->

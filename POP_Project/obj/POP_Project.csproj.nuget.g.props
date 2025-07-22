@@ -13,4 +13,12 @@
     <SourceRoot Include="C:\Users\o\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_Xaml_Behaviors_Wpf Condition=" '$(PkgMicrosoft_Xaml_Behaviors_Wpf)' == '' ">C:\Users\o\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.135</PkgMicrosoft_Xaml_Behaviors_Wpf>
+    <PkgC1_WPF_Core Condition=" '$(PkgC1_WPF_Core)' == '' ">C:\Users\o\.nuget\packages\c1.wpf.core\9.0.20251.1102</PkgC1_WPF_Core>
+    <PkgC1_WPF_ListView Condition=" '$(PkgC1_WPF_ListView)' == '' ">C:\Users\o\.nuget\packages\c1.wpf.listview\9.0.20251.1102</PkgC1_WPF_ListView>
+    <PkgC1_WPF_Input Condition=" '$(PkgC1_WPF_Input)' == '' ">C:\Users\o\.nuget\packages\c1.wpf.input\9.0.20251.1102</PkgC1_WPF_Input>
+    <PkgC1_WPF_Gauge Condition=" '$(PkgC1_WPF_Gauge)' == '' ">C:\Users\o\.nuget\packages\c1.wpf.gauge\9.0.20251.1102</PkgC1_WPF_Gauge>
+    <PkgC1_WPF_Chart Condition=" '$(PkgC1_WPF_Chart)' == '' ">C:\Users\o\.nuget\packages\c1.wpf.chart\9.0.20251.1102</PkgC1_WPF_Chart>
+  </PropertyGroup>
 </Project>

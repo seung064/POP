@@ -50,6 +50,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "C1.WPF.Chart": {
+              "target": "Package",
+              "version": "[9.0.20251.1102, )"
+            },
+            "C1.WPF.Gauge": {
+              "target": "Package",
+              "version": "[9.0.20251.1102, )"
+            },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.4.0, )"
