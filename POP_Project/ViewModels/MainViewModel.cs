@@ -26,6 +26,9 @@ namespace POP_Project.ViewModels
         [ObservableProperty]
         private DefectViewModel defectVM = new DefectViewModel();
 
+        [ObservableProperty]
+        private PerformanceViewModel performanceVM = new PerformanceViewModel();
+
         [RelayCommand]
         private void OpenMenu()
         {
@@ -46,7 +49,7 @@ namespace POP_Project.ViewModels
         private void NavigatePerformance()
         {
             // PerformancePage로 이동
-            MainWindow.Instance.Navigate(new PerformancePage());
+            MainWindow.Instance.Navigate(new PerformancePage(PerformanceVM));
         }
 
         [RelayCommand]

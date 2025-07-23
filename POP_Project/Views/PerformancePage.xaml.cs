@@ -23,10 +23,11 @@ namespace POP_Project.Views
     /// </summary>
     public partial class PerformancePage : Page
     {
-        public PerformancePage()
+        public PerformancePage(PerformanceViewModel viewModel)
         {
             InitializeComponent();
-            this.DataContext = new PerformanceViewModel();
+            this.DataContext = viewModel;
+
         }
     }
 }

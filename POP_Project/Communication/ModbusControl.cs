@@ -25,13 +25,13 @@ namespace POP_Project.Communication
         
 
         // Modbus 서버(PLC)에 연결하는 메서드
-        public void Connect()
+        public void Connect(string ip = "192.168.0.10", int port = 502)
         {
             try
             {
                 // TcpClient 객체 초기화 및 PLC에 연결 시도
                 tcpClient = new TcpClient();
-                tcpClient.Connect(ipAddress,port);
+                tcpClient.Connect(ip,port);
 
                 // 연결된 TcpClient로부터 Modbus 마스터 생성
                 master = ModbusIpMaster.CreateIp(tcpClient);
@@ -67,10 +67,21 @@ namespace POP_Project.Communication
         // 비동기로 Coil 값을 쓰는 메서드
         public async Task WriteCoilAsync(ushort address, bool value)
         {
-            if (!IsConnected) return;
-            await master.WriteSingleCoilAsync(address, value);
+            if (!IsConnected)
+                throw new InvalidOperationException("Modbus 연결이 되어 있지 않습니다.");
+
+            try
+            {
+                await master.WriteSingleCoilAsync(address, value);
+            }
+            catch (Exception ex)
+            {
+                IsConnected = false;
+                throw new Exception($"Coil 쓰기 실패 (주소: {address}): {ex.Message}");
+            }
         }
 
+        /*
         private async Task ControlMultiplePlcLamps()
         {
             var modbus = new ModbusControl();
@@ -96,5 +107,6 @@ namespace POP_Project.Communication
                 modbus.Disconnect();
             }
         }
+        */
     }
 }
