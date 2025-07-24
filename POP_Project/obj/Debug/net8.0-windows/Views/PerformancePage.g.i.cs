@@ -54,7 +54,7 @@ namespace POP_Project.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/POP_Project;V1.0.0.0;component/views/performancepage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/POP_Project;component/views/performancepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\PerformancePage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

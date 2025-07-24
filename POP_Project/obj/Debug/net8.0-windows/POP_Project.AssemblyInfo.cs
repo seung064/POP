@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POP_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0eda6f71c11b73aa04294f734564adf9a7364da0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dba5e0f29e670edc6fab22c83d9a2b8ecb282366")]
 [assembly: System.Reflection.AssemblyProductAttribute("POP_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POP_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

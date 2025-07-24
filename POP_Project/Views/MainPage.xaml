@@ -67,7 +67,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="설비" Width="180">
+            <TabItem Header="설비" Width="180" Height="22" Margin="0,-2,0,0" VerticalAlignment="Top">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <UniformGrid Columns="2" Margin="10">
                         <!-- PCB loader 내용 -->
@@ -88,16 +88,16 @@
                                 <!-- 내용 -->
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                                     <TextBlock Text="누적 운전 시간" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Text="{Binding PcbLoader.Running_Time}" IsReadOnly="True" Margin="0,0,0,0"/>
 
                                     <TextBlock Text="최근 점검일" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Text="{Binding PcbLoader.Recent_Check,StringFormat='yyyy-MM-dd'}" IsReadOnly="True" Margin="0,0,0,0"/>
 
                                     <TextBlock Text="제조사" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Text="{Binding PcbLoader.Manufacturer}" IsReadOnly="True" Margin="0,0,0,0"/>
 
                                     <TextBlock Text="모델명" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Text="{Binding PcbLoader.Model_Name}" IsReadOnly="True" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -120,16 +120,16 @@
                                 <!-- 내용 -->
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                                     <TextBlock Text="누적 운전 시간" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ScreenPrinter.Running_Time}" IsReadOnly="True"/>
 
                                     <TextBlock Text="최근 점검일" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ScreenPrinter.Recent_Check, StringFormat='yyyy-MM-dd'}" IsReadOnly="True"/>
 
                                     <TextBlock Text="제조사" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ScreenPrinter.Manufacturer}" IsReadOnly="True"/>
 
                                     <TextBlock Text="모델명" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ScreenPrinter.Model_Name}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -152,16 +152,16 @@
                                 <!-- 내용 -->
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                                     <TextBlock Text="누적 운전 시간" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ChipMounter.Running_Time}" IsReadOnly="True"/>
 
                                     <TextBlock Text="최근 점검일" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ChipMounter.Recent_Check, StringFormat='yyyy-MM-dd'}" IsReadOnly="True"/>
 
                                     <TextBlock Text="제조사" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ChipMounter.Manufacturer}" IsReadOnly="True"/>
 
                                     <TextBlock Text="모델명" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ChipMounter.Manufacturer}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -184,16 +184,16 @@
                                 <!-- 내용 -->
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                                     <TextBlock Text="누적 운전 시간" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ReflowOven.Running_Time}" IsReadOnly="True"/>
 
                                     <TextBlock Text="최근 점검일" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ReflowOven.Recent_Check, StringFormat='yyyy-MM-dd'}" IsReadOnly="True"/>
 
                                     <TextBlock Text="제조사" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ReflowOven.Manufacturer}" IsReadOnly="True"/>
 
                                     <TextBlock Text="모델명" FontSize="12"/>
-                                    <TextBox Width="100" Margin="0,0,0,0"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding ReflowOven.Model_Name}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -201,9 +201,14 @@
                     </UniformGrid>
                 </ScrollViewer>
             </TabItem>
+            
             <TabItem Header="제품이력" Width="170">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="473*"/>
+                            <ColumnDefinition Width="185*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -214,15 +219,15 @@
                         </Grid.RowDefinitions>
 
                         <!-- 제조 기록 텍스트 -->
-                        <TextBlock Text="제조 기록" FontSize="16" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="0"/>
+                        <TextBlock Text="제조 기록" FontSize="16" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="0" Grid.ColumnSpan="2"/>
 
                         <!-- 제조 기록 테이블 -->
-                        <DataGrid Grid.Row="1" ItemsSource="{Binding ProductVM.Products}" AutoGenerateColumns="False"
+                        <DataGrid ItemsSource="{Binding ProductVM.Products}" AutoGenerateColumns="False"
                               Background="White" Height="200"
                               CanUserResizeColumns="True" CanUserSortColumns="True"
                               SelectionMode="Extended" SelectionUnit="FullRow"
                               ScrollViewer.CanContentScroll="True"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                              ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="0,26,0,0" Grid.RowSpan="2">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="제조 번호" Binding="{Binding TaskId}" Width="100"/>
                                 <DataGridTextColumn Header="Serial Number" Binding="{Binding QR_Code}" Width="150"/>
@@ -233,7 +238,7 @@
                         </DataGrid>
 
                         <!-- 불량 정보 텍스트 -->
-                        <TextBlock Text="불량 정보" FontSize="16" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="2"/>
+                        <TextBlock Text="불량 정보" FontSize="16" FontWeight="Bold" Margin="0,200,0,5" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
                         <!-- 불량 정보 테이블 -->
                         <DataGrid Grid.Row="3" ItemsSource="{Binding DefectVM.Defects}" AutoGenerateColumns="False"
@@ -241,7 +246,7 @@
                               CanUserResizeColumns="True" CanUserSortColumns="True"
                               SelectionMode="Extended" SelectionUnit="FullRow"
                               ScrollViewer.CanContentScroll="True"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                              ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.RowSpan="2">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="제조 번호" Binding="{Binding TaskId}" Width="100"/>
                                 <DataGridTextColumn Header="Serial Number" Binding="{Binding QR_Code}" Width="150"/>

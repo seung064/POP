@@ -29,6 +29,9 @@ namespace POP_Project.ViewModels
         [ObservableProperty]
         private PerformanceViewModel performanceVM = new PerformanceViewModel();
 
+        [ObservableProperty]
+        private FacilityViewModel facilityVM = new FacilityViewModel();
+
         [RelayCommand]
         private void OpenMenu()
         {
