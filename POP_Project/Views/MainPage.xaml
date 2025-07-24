@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="900"
       Title="MainPage">
-    <Grid Background="LightGray">
+    <Grid Background="LightGray" DataContext="{Binding ChartsVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -23,12 +23,10 @@
                 <StackPanel Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="174*"/>
-                            <ColumnDefinition Width="50*"/>
-                            <ColumnDefinition Width="123*"/>
-                            <ColumnDefinition Width="174*"/>
-                            <ColumnDefinition Width="174*"/>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="150*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -38,11 +36,23 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Text="목표" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10"/>
+                        <TextBlock Text="총 생산/목표" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10"/>
                         <c1:C1RadialGauge x:Name="radialGauge_aim"
-                        Value="{Binding aim}"
+                        Value="{Binding Aim, UpdateSourceTrigger=PropertyChanged}"
                         SweepAngle="360"
                         StartAngle="0"                                          
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Margin="10"/>
+
+                        <TextBlock Text="설비 가동률" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                        <c1:C1RadialGauge x:Name="radialGauge"
+                        Value="{Binding Efficiency_Average}"
                         IsReadOnly="True"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -52,45 +62,36 @@
                         Grid.Row="1"
                         Margin="10"/>
 
-                        <TextBlock Text="설비 가동률" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"/>
-                        <c1:C1RadialGauge x:Name="radialGauge"
-                        Value="{Binding Efficiency_sum}"
+                        <TextBlock Text="Line_1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_line1"
+                        Value="{Binding Efficiency_Line1}"
                         IsReadOnly="True"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Width="120"
                         Height="120"
                         Grid.Column="2"
-                        Grid.Row="1" Grid.ColumnSpan="2"/>
+                        Grid.Row="1"
+                        Margin="10"/>
 
-                        <TextBlock Text="Line 1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <c1:C1RadialGauge x:Name="radialGauge_line1"
-                        Value="{Binding Efficiency}"
-                        IsReadOnly="True"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Width="120"
-                        Height="120"
-                        Grid.Column="4"
-                        Grid.Row="1"/>
-
-                        <TextBlock Text="Line 2" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Line_2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <c1:C1RadialGauge x:Name="radialGauge_line2"
-                        Value="{Binding Efficiency}"
+                        Value="{Binding Efficiency_Line2}"
                         IsReadOnly="True"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Width="120"
                         Height="120"
-                        Grid.Column="5"
-                        Grid.Row="1"/>
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        Margin="10"/>
 
-                        <TextBlock Text="인수인계" Grid.ColumnSpan="3" Grid.Row="3" Margin="150,10,0,10" HorizontalAlignment="Left"/>
-                        <TextBox Grid.Row="4" Grid.ColumnSpan="4" Width="320" Height="120" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <TextBlock Text="인수인계" Grid.ColumnSpan="2" Grid.Row="3" Margin="150,10,0,10" HorizontalAlignment="Left"/>
+                        <TextBox Grid.Row="4" Grid.ColumnSpan="2" Width="320" Height="120" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
 
-                        <TextBlock Text="CONDITION" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" Margin="140,10,0,10" HorizontalAlignment="Left"/>
-                        <c2:FlexChart ChartType="Line" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2"
+                        <TextBlock Text="CONDITION" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Margin="140,10,0,10" HorizontalAlignment="Left"/>
+                        <c2:FlexChart ChartType="Line" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"
                             ItemsSource="{Binding condition}"
                             BindingX="Date"
                             Height="120"
@@ -101,7 +102,7 @@
             </TabItem>
 
             <TabItem Header="생산" Width="180">
-                <Grid Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="3*"/>
@@ -114,7 +115,7 @@
                             <TextBlock Text="DB 연동, 라이브러리 사용" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border-->
                         <c1:C1RadialGauge x:Name="radialGauge_aim1"
-                                Value="{Binding aim}"
+                                Value="{Binding Aim, UpdateSourceTrigger=PropertyChanged}"
                                 SweepAngle="360" 
                                 StartAngle="0"
                                 IsReadOnly="True"
@@ -130,27 +131,28 @@
                     <StackPanel Grid.Column="1" Margin="20,0,0,0">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="목표 생산량" Width="100" VerticalAlignment="Center"/>
-                            <TextBox Width="150" Text="{Binding TargetProduction}" />
+                            <TextBox Width="150" Text="{Binding TargetProduction, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="현재 생산량" Width="100" VerticalAlignment="Center"/>
-                            <TextBox Width="150" Text="{Binding CurrentProduction}" />
+                            <TextBox Width="150" Text="{Binding CurrentProduction, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="작업자" Width="100" VerticalAlignment="Center"/>
-                            <TextBox Width="150" Text="{Binding WorkerName}" />
+                            <TextBox Width="150" Text="{Binding WorkerName, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="불량 수량" Width="100" VerticalAlignment="Center"/>
-                            <TextBox Width="150" Text="{Binding DefectCount}" />
+                            <TextBox Width="150" Text="{Binding DefectCount, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="불량률" Width="100" VerticalAlignment="Center"/>
-                            <TextBox Width="150" Text="{Binding DefectRate}" />
+                            <TextBox Width="150" Text="{Binding DefectRate, Mode=OneWay}" />
+                            <!-- 불량수량 / 검사수량 * 100  = 불량률 / 현재 생산량 = 검사수량 -->
                         </StackPanel>
                     </StackPanel>
                 </Grid>

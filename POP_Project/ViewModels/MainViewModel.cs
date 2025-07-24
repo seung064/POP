@@ -26,6 +26,10 @@ namespace POP_Project.ViewModels
         [ObservableProperty]
         private DefectViewModel defectVM = new DefectViewModel();
 
+        [ObservableProperty]
+        private ChartsViewModel chartsVM = new ChartsViewModel();
+
+
         [RelayCommand]
         private void OpenMenu()
         {
