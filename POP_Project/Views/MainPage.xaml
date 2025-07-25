@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="900"
       Title="MainPage">
-    <Grid Background="LightGray" DataContext="{Binding ChartsVM}">
+    <Grid Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -17,9 +17,9 @@
 
 
         <!-- 탭 컨트롤 -->
-        <TabControl Height="400" Width="720">
+        <TabControl Height="400" Width="720" >
             <!-- DashBoard 탭-->
-            <TabItem Header="DashBoard" Width="180">
+            <TabItem Header="DashBoard" Width="180" DataContext="{Binding ChartsVM}">
                 <StackPanel Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -101,8 +101,8 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="생산" Width="180">
-                <Grid Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <TabItem Header="생산" Width="180"  DataContext="{Binding ChartsVM}">
+                <Grid Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="3*"/>
@@ -131,7 +131,7 @@
                     <StackPanel Grid.Column="1" Margin="20,0,0,0">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="목표 생산량" Width="100" VerticalAlignment="Center"/>
-                            <TextBox Width="150" Text="{Binding TargetProduction, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Width="150" Text="100"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">

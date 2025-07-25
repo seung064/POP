@@ -29,7 +29,6 @@ namespace POP_Project.ViewModels
         [ObservableProperty]
         private ChartsViewModel chartsVM = new ChartsViewModel();
 
-
         [RelayCommand]
         private void OpenMenu()
         {
