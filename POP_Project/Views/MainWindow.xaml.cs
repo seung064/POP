@@ -23,8 +23,8 @@ namespace POP_Project
 
         public LoginViewModel LoginVM { get; set; }
         public MainViewModel MainVM { get; set; }
-        public ProductViewModel ProductVM { get; set; }
-        public DefectViewModel DefectVM { get; set; }
+        //public ProductViewModel ProductVM { get; set; }
+        //public DefectViewModel DefectVM { get; set; }
 
         public MainWindow()
         {

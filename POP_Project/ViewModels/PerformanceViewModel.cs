@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace POP_Project.ViewModels
@@ -38,6 +39,8 @@ namespace POP_Project.ViewModels
         private bool isStartChecked;
         [ObservableProperty]
         private bool isDefectChecked;
+        [ObservableProperty]
+        private bool isEmergencyStopChecked;
 
         // 컨베이어 시작 및 정지 속성
         partial void OnIsStartCheckedChanged(bool value)
@@ -52,10 +55,9 @@ namespace POP_Project.ViewModels
         }
 
         // 비상 정지
-        [RelayCommand]
-        private async Task EmergencyStop()
+        partial void OnIsEmergencyStopCheckedChanged(bool value)
         {
-            await WriteCoilAsync(4, false); // 컨베이어 정지
+            _ = WriteCoilAsync(4, value);
         }
 
         [ObservableProperty]

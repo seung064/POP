@@ -51,8 +51,9 @@ namespace POP_Project.ViewModels
         [RelayCommand]
         private void NavigatePerformance()
         {
-            // PerformancePage로 이동
-            MainWindow.Instance.Navigate(new PerformancePage(PerformanceVM));
+            // PerformancePage로 이동할 때,
+            // MainViewModel이 이미 가지고 있는 performanceVM 인스턴스를 전달한다.
+            MainWindow.Instance.Navigate(new PerformancePage(this.PerformanceVM));
         }
 
         [RelayCommand]
