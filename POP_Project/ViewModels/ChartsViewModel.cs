@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509;
+using POP_Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -200,9 +201,6 @@ namespace POP_Project.ViewModels
     {
 
         [ObservableProperty]
-        private string workerName;
-
-        [ObservableProperty]
         private int currentProduction;
 
         [ObservableProperty]
@@ -376,5 +374,7 @@ namespace POP_Project.ViewModels
                 DefectCount = Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+        [ObservableProperty]
+        private string workerName = DbConfig.UserName;
     }
 }

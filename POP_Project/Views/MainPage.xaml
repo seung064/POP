@@ -86,8 +86,20 @@
                         Grid.Row="1"
                         Margin="10"/>
 
-                        <TextBlock Text="인수인계" Grid.ColumnSpan="2" Grid.Row="3" Margin="150,10,0,10" HorizontalAlignment="Left"/>
-                        <TextBox Grid.Row="4" Grid.ColumnSpan="2" Width="320" Height="120" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <TextBlock Text="인수인계" Grid.ColumnSpan="1" Grid.Row="3" Margin="10" HorizontalAlignment="Left"/>
+                        <!--TextBox Grid.Row="4" Grid.ColumnSpan="2" Width="320" Height="120" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/-->
+                        <TextBox TextWrapping="Wrap"
+                                AcceptsReturn="True"
+                                VerticalScrollBarVisibility="Auto"
+                                HorizontalScrollBarVisibility="Auto"
+                                x:Name="handover"
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                Width="320"
+                                Height="120"
+                                Text="{Binding HandoverText, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="업데이트" Command="{Binding SaveMemoCommand}" Width="50" Height="20" HorizontalAlignment="Left" Margin="50,0,0,0" Grid.Row="3" Grid.Column="1"/>
+                        <Button Content="저장" Command="{Binding SaveMemoCommand}" Width="50" Height="20" HorizontalAlignment="Right" Margin="10" Grid.Row="3" Grid.Column="1"/>
 
 
                         <TextBlock Text="CONDITION" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Margin="140,10,0,10" HorizontalAlignment="Left"/>

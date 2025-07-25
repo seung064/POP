@@ -57,7 +57,7 @@ namespace POP_Project.ViewModels
                     // DB 계정 정보 저장 - 인수인계용
                     DbConfig.UserId = u.Id;       // 또는 u.Id
                     DbConfig.Password = u.Pwd;    // 또는 u.Pwd
-
+                    DbConfig.UserName = u.Name;
 
                     MessageBox.Show($"{u.Name}님 환영합니다", "로그인", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainWindow.Instance.Navigate(new MainPage());
