@@ -40,7 +40,7 @@ namespace POP_Project.ViewModels
             User = new ObservableCollection<User>(userList);
         }
 
-        public DbConfig DbConfig { get; private set; } = new DbConfig(); // 인수인계용
+        //public DbConfig DbConfig { get; private set; } = new DbConfig(); // 인수인계용
 
         [RelayCommand]
         private async Task Login()
@@ -55,9 +55,9 @@ namespace POP_Project.ViewModels
                     Name = u.Name;
 
                     // DB 계정 정보 저장 - 인수인계용
-                    DbConfig.UserId = u.Id;       // 또는 u.Id
-                    DbConfig.Password = u.Pwd;    // 또는 u.Pwd
-                    DbConfig.UserName = u.Name;
+                    AppLoginInfo.CurrentUserId = u.Id;
+                    AppLoginInfo.CurrentUserPwd = u.Pwd;
+                    AppLoginInfo.CurrentUserName = u.Name;
 
                     MessageBox.Show($"{u.Name}님 환영합니다", "로그인", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainWindow.Instance.Navigate(new MainPage());

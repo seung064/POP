@@ -1,12 +1,13 @@
-﻿using System;
-using System.Windows;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using POP_Project.Models;
+using POP_Project.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using POP_Project.Views;
+using System.Windows;
 
 namespace POP_Project.ViewModels
 {
@@ -28,6 +29,7 @@ namespace POP_Project.ViewModels
 
         [ObservableProperty]
         private ChartsViewModel chartsVM = new ChartsViewModel();
+
 
         [RelayCommand]
         private void OpenMenu()
