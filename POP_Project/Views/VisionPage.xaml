@@ -13,7 +13,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
             <Button Content="Open Conveyer"
                     Width="200" Height="50" FontSize="20" Margin="30"
-                    Command="{Binding OpenCamera}"
+                    Command="{Binding ViewerProcessCommand}"
                     Background="White" Cursor="Hand" />
             <Button Content="Open QRcode"
                     Width="200" Height="50" FontSize="20" Margin="30"

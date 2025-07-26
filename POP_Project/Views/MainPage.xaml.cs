@@ -39,6 +39,5 @@ namespace POP_Project.Views
             InitializeComponent();
             DataContext = mvm;
         }
-
     }
 }

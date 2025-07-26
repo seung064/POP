@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using POP_Project.Models;
+using POP_Project.ViewModels;
+using POP_Project.Views;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,9 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using POP_Project.ViewModels;
-using POP_Project.Views;
-using System.Linq;
 
 namespace POP_Project
 {
@@ -23,8 +24,9 @@ namespace POP_Project
 
         public LoginViewModel LoginVM { get; set; }
         public MainViewModel MainVM { get; set; }
-        //public ProductViewModel ProductVM { get; set; }
-        //public DefectViewModel DefectVM { get; set; }
+        public ProductViewModel ProductVM { get; set; }
+        public DefectViewModel DefectVM { get; set; }
+        public ChartsViewModel ChartsVM { get; set; }
 
         public MainWindow()
         {
@@ -39,6 +41,8 @@ namespace POP_Project
             MainFrame.Navigated += MainFrame_Navigated;
 
             MainFrame.Navigate(new LoginPage(LoginVM));
+            //MainFrame.Navigate(new MainPage(MainVM));  //DB연동 오류로 인해 로그인 스킵
+            MainVM.IsHamburgerVisible = true;
         }
 
         // LoginPage에서 햄버거 버튼 숨기기 (투명도 조정)
