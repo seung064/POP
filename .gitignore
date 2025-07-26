@@ -1,3 +1,54 @@
+# ===========================
+# Visual Studio & C# WPF용
+# ===========================
+
+## 빌드 결과물
 bin/
 obj/
-.vs/
+
+## 자동 생성 코드
+*.g.cs
+*.g.i.cs
+*.designer.cs
+
+## 사용자 설정 파일
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+
+## 임시 파일
+*.tmp
+*.log
+*.bak
+
+## 디버깅
+*.pdb
+*.cache
+*.dbmdl
+*.vsp
+*.vspscc
+*.vssscc
+
+## NuGet
+project.lock.json
+project.assets.json
+*.nupkg
+packages/
+.nuget/
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## OS 관련
+Thumbs.db
+ehthumbs.db
+.DS_Store
+*.swp
+
+## 기타
+_ReSharper*/
+*.resharper
+*.DotSettings.user
