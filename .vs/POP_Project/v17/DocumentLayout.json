@@ -1,0 +1,247 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\viewmodels\\performanceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\viewmodels\\performanceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\views\\performancepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\views\\performancepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\views\\performancepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\views\\performancepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\communication\\modbuscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\communication\\modbuscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\converters\\booltoonoffconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\converters\\booltoonoffconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\viewmodels\\facilityviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\viewmodels\\facilityviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\models\\defect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\models\\defect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\models\\facility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\models\\facility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|c:\\users\\codingon24\\desktop\\pop_project\\pop_project\\repositories\\defectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E2AB03A-925A-47AF-BD1D-D4F3B68F06E2}|POP_Project\\POP_Project.csproj|solutionrelative:pop_project\\repositories\\defectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Views\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "POP_Project\\Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAD4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T03:20:53.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BoolToOnOffConverter.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Converters\\BoolToOnOffConverter.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Converters\\BoolToOnOffConverter.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Converters\\BoolToOnOffConverter.cs",
+              "RelativeToolTip": "POP_Project\\Converters\\BoolToOnOffConverter.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAywBIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T02:58:20.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PerformancePage.xaml",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\PerformancePage.xaml",
+              "RelativeDocumentMoniker": "POP_Project\\Views\\PerformancePage.xaml",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\PerformancePage.xaml",
+              "RelativeToolTip": "POP_Project\\Views\\PerformancePage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-25T01:01:57.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PerformancePage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\PerformancePage.xaml.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Views\\PerformancePage.xaml.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\PerformancePage.xaml.cs",
+              "RelativeToolTip": "POP_Project\\Views\\PerformancePage.xaml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAuwB8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T01:01:56.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PerformanceViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\PerformanceViewModel.cs",
+              "RelativeDocumentMoniker": "POP_Project\\ViewModels\\PerformanceViewModel.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\PerformanceViewModel.cs",
+              "RelativeToolTip": "POP_Project\\ViewModels\\PerformanceViewModel.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAowDYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T00:14:18.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ModbusControl.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Communication\\ModbusControl.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Communication\\ModbusControl.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Communication\\ModbusControl.cs",
+              "RelativeToolTip": "POP_Project\\Communication\\ModbusControl.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAkwFEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T00:11:06.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Views\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\MainPage.xaml.cs",
+              "RelativeToolTip": "POP_Project\\Views\\MainPage.xaml.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T16:02:23.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "POP_Project\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "POP_Project\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAwEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T15:39:54.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DefectRepository.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Repositories\\DefectRepository.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Repositories\\DefectRepository.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Repositories\\DefectRepository.cs",
+              "RelativeToolTip": "POP_Project\\Repositories\\DefectRepository.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwBIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T14:50:58.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Facility.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Models\\Facility.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Models\\Facility.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Models\\Facility.cs",
+              "RelativeToolTip": "POP_Project\\Models\\Facility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T14:47:15.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Defect.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Models\\Defect.cs",
+              "RelativeDocumentMoniker": "POP_Project\\Models\\Defect.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Models\\Defect.cs",
+              "RelativeToolTip": "POP_Project\\Models\\Defect.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T14:47:21.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "POP_Project\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "POP_Project\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T14:20:53.494Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\MainPage.xaml",
+              "RelativeDocumentMoniker": "POP_Project\\Views\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\Views\\MainPage.xaml",
+              "RelativeToolTip": "POP_Project\\Views\\MainPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-24T14:18:32.251Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FacilityViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\FacilityViewModel.cs",
+              "RelativeDocumentMoniker": "POP_Project\\ViewModels\\FacilityViewModel.cs",
+              "ToolTip": "C:\\Users\\codingOn24\\Desktop\\POP_Project\\POP_Project\\ViewModels\\FacilityViewModel.cs",
+              "RelativeToolTip": "POP_Project\\ViewModels\\FacilityViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T14:20:32.826Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
