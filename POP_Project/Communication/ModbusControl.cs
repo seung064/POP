@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace POP_Project.Communication
 {
-    
+
     public class ModbusControl
     {
         // modbus 통신에 필요한 TcpClient, Modbus 마스터 객체
@@ -22,16 +22,16 @@ namespace POP_Project.Communication
         // 현재 연결 상태를 확인하는 속성
         public bool IsConnected { get; private set; } = false;
 
-        
+
 
         // Modbus 서버(PLC)에 연결하는 메서드
-        public void Connect()
+        public void Connect(string ip = "192.168.0.10", int port = 502)
         {
             try
             {
                 // TcpClient 객체 초기화 및 PLC에 연결 시도
                 tcpClient = new TcpClient();
-                tcpClient.Connect(ipAddress,port);
+                tcpClient.Connect(ip, port);
 
                 // 연결된 TcpClient로부터 Modbus 마스터 생성
                 master = ModbusIpMaster.CreateIp(tcpClient);
@@ -67,33 +67,17 @@ namespace POP_Project.Communication
         // 비동기로 Coil 값을 쓰는 메서드
         public async Task WriteCoilAsync(ushort address, bool value)
         {
-            if (!IsConnected) return;
-            await master.WriteSingleCoilAsync(address, value);
-        }
-
-        private async Task ControlMultiplePlcLamps()
-        {
-            var modbus = new ModbusControl();
-            modbus.Connect();
-
-            if (!modbus.IsConnected)
-                return;
+            if (!IsConnected)
+                throw new InvalidOperationException("Modbus 연결이 되어 있지 않습니다.");
 
             try
             {
-                await modbus.WriteCoilAsync(3, true);
-
-                await modbus.WriteCoilAsync(4, true);
-
-                await modbus.WriteCoilAsync(5, true);
+                await master.WriteSingleCoilAsync(address, value);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Modbus 제어 중 오류 발생: {ex.Message}", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                modbus.Disconnect();
+                IsConnected = false;
+                throw new Exception($"Coil 쓰기 실패 (주소: {address}): {ex.Message}");
             }
         }
     }

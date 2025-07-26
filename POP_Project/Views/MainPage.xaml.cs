@@ -21,15 +21,20 @@ namespace POP_Project.Views
     /// </summary>
     public partial class MainPage : Page
     {
+        private FacilityViewModel FacilityVM;
         
         public MainPage()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
-            
+
+            FacilityVM = new FacilityViewModel();
+            this.DataContext = FacilityVM;
+
+            // 비동기 데이터 로딩
+            Loaded += async (_, __) => await FacilityVM.LoadFacilitiesAsync();
         }
 
-        public MainPage(MainViewModel mvm)
+        public MainPage(FacilityViewModel mvm)
         {
             InitializeComponent();
             DataContext = mvm;

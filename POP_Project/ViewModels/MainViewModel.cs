@@ -30,6 +30,12 @@ namespace POP_Project.ViewModels
         [ObservableProperty]
         private ChartsViewModel chartsVM = new ChartsViewModel();
 
+        [ObservableProperty]
+        private PerformanceViewModel performanceVM = new PerformanceViewModel();
+
+        [ObservableProperty]
+        private FacilityViewModel facilityVM = new FacilityViewModel();
+
 
         [RelayCommand]
         private void OpenMenu()
@@ -50,8 +56,9 @@ namespace POP_Project.ViewModels
         [RelayCommand]
         private void NavigatePerformance()
         {
-            // PerformancePage로 이동
-            MainWindow.Instance.Navigate(new PerformancePage());
+            // PerformancePage로 이동할 때,
+            // MainViewModel이 이미 가지고 있는 performanceVM 인스턴스를 전달한다.
+            MainWindow.Instance.Navigate(new PerformancePage(this.PerformanceVM));
         }
 
         [RelayCommand]

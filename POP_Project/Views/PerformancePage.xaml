@@ -12,7 +12,7 @@
     <Page.Resources>
         <converters:BoolToOnOffConverter x:Key="BoolToOnOffConverter"/>
     </Page.Resources>
-    
+
     <Grid Background="LightGray">
         <!-- 정보 표시 영역 (왼쪽 가운데) -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0">
@@ -27,7 +27,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="작동 시작" FontSize="20" FontWeight="Bold" Width="100"/>
-                <ToggleButton Content="{Binding IsStartChecked, Converter={StaticResource BoolToOnOffConverter}}" IsChecked="{Binding IsStartChecked}" Width="80" Height="30" Margin="10,0,0,0">
+                <ToggleButton Content="{Binding IsStartChecked, Mode=TwoWay,Converter={StaticResource BoolToOnOffConverter}}" IsChecked="{Binding IsStartChecked}" Width="80" Height="30" Margin="10,0,0,0">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton">
                             <Setter Property="Background" Value="LightGray"/>
@@ -48,7 +48,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="불량 검출" FontSize="20" FontWeight="Bold" Width="100"/>
-                <ToggleButton Content="{Binding IsDefectChecked, Converter={StaticResource BoolToOnOffConverter}}" IsChecked="{Binding IsDefectChecked}" Width="80" Height="30" Margin="10,0,0,0">
+                <ToggleButton Content="{Binding IsDefectChecked, Mode=TwoWay, Converter={StaticResource BoolToOnOffConverter}}" IsChecked="{Binding IsDefectChecked}" Width="80" Height="30" Margin="10,0,0,0">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton">
                             <Setter Property="Background" Value="LightGray"/>
@@ -69,7 +69,29 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="비상 정지" FontSize="20" FontWeight="Bold" Width="100"/>
-                <Button Content="STOP" Width="80" Cursor="Hand" Background="Red" Foreground="#1b1f2b" FontWeight="Bold" BorderThickness="3" Command="{Binding EmergencyStop}"/>
+                <!-- Button을 ToggleButton으로 변경하고, IsChecked 속성을 새로 만든 속성에 바인딩 -->
+                <ToggleButton Content="{Binding IsEmergencyStopChecked, Converter={StaticResource BoolToOnOffConverter}, Mode=OneWay}" 
+                              IsChecked="{Binding IsEmergencyStopChecked, Mode=TwoWay}" 
+                              Width="80" Height="30" Margin="10,0,0,0">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <!-- 기본 상태 스타일 -->
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderBrush" Value="Gray"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <!-- 비상 정지(Checked) 상태일 때 스타일 -->
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="DarkRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
             </StackPanel>
         </StackPanel>
 
@@ -79,5 +101,7 @@
         Margin="10, 60, 10, 10"
         Command="{Binding NavigateBackCommand}"
         Background="Transparent" Cursor="Hand" />
+
+        
     </Grid>
 </Page>
