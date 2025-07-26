@@ -34,7 +34,7 @@ namespace POP_Project
             detectorProcess = new Process();
             detectorProcess.StartInfo.FileName = "python";
             detectorProcess.StartInfo.Arguments = "OpenCV_Detector.py";
-            detectorProcess.StartInfo.WorkingDirectory = @"C:\Users\o\Desktop\xaml\POP_Project\bin\Debug\net8.0-windows";
+            detectorProcess.StartInfo.WorkingDirectory = @".";
             detectorProcess.Start();
             MessageBox.Show("실행완료");
         }
