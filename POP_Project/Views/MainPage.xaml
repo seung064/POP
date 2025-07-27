@@ -1,0 +1,383 @@
+﻿<Page x:Class="POP_Project.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:POP_Project.Views"
+      xmlns:c1="clr-namespace:C1.WPF.Gauge;assembly=C1.WPF.Gauge"
+      xmlns:c2="clr-namespace:C1.WPF.Chart;assembly=C1.WPF.Chart"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      x:Name="mainPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="MainPage">
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- 탭 컨트롤 -->
+        <TabControl Height="400" Width="720" >
+            <!-- DashBoard 탭-->
+            <TabItem Header="DashBoard" Width="180" DataContext="{Binding ChartsVM}">
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="150*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="총 생산/목표" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_aim"
+                        Value="{Binding Aim, UpdateSourceTrigger=PropertyChanged}"
+                        SweepAngle="360"
+                        StartAngle="0"                                          
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Margin="10"/>
+
+                        <TextBlock Text="설비 가동률" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                        <c1:C1RadialGauge x:Name="radialGauge"
+                        Value="{Binding Efficiency_Average}"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Margin="10"/>
+
+                        <TextBlock Text="Line_1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_line1"
+                        Value="{Binding Efficiency_Line1}"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Margin="10"/>
+
+                        <TextBlock Text="Line_2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <c1:C1RadialGauge x:Name="radialGauge_line2"
+                        Value="{Binding Efficiency_Line2}"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="120"
+                        Height="120"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        Margin="10"/>
+
+                        <TextBlock Text="인수인계" Grid.ColumnSpan="1" Grid.Row="3" Margin="10" HorizontalAlignment="Left"/>
+                        <!--TextBox Grid.Row="4" Grid.ColumnSpan="2" Width="320" Height="120" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/-->
+                        <TextBox TextWrapping="Wrap"
+                                AcceptsReturn="True"
+                                VerticalScrollBarVisibility="Auto"
+                                HorizontalScrollBarVisibility="Auto"
+                                x:Name="handover"
+                                Grid.Row="3"
+                                Grid.ColumnSpan="2"
+                                Width="140"
+                                Height="20"
+                                Margin="0,0,70,0"
+                                Text="{Binding HandoverText, Mode=TwoWay}"/>
+                        <TextBox TextWrapping="Wrap"
+                                AcceptsReturn="True"
+                                VerticalScrollBarVisibility="Auto"
+                                HorizontalScrollBarVisibility="Auto"
+                                x:Name="allhandover"
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                Width="320"
+                                Height="120"
+                                Text="{Binding AllHandoverText}" IsReadOnly="True" />
+                        <!--Button Content="업데이트" Command="{Binding LoadMemoAsyncCommand}" Width="55" Height="20" HorizontalAlignment="Left" Margin="50,0,0,0" Grid.Row="3" Grid.Column="1"/-->
+                        <Button Content="저장" Command="{Binding SaveMemoCommand}" Width="50" Height="20" HorizontalAlignment="Right" Margin="10" Grid.Row="3" Grid.Column="1"/>
+
+
+                        <TextBlock Text="CONDITION" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Margin="140,10,0,10" HorizontalAlignment="Left"/>
+
+                        <!-- 라이브차트 -->
+                        <lvc:CartesianChart Series="{Binding DataContext.ConditionVM.SeriesCollection,ElementName=mainPage}" LegendLocation="Top" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Title="시간" Labels="{Binding DataContext.ConditionVM.XLabels, ElementName=mainPage}" />
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="값" LabelFormatter="{Binding DataContext.ConditionVM.ValueFormatter, ElementName=mainPage}" />
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="생산" Width="180"  DataContext="{Binding ChartsVM}">
+                <Grid Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 파이차트 -->
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <TextBlock Text="총 생산/목표" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <!--Border Width="150" Height="150" Background="White" BorderBrush="Black" BorderThickness="1" CornerRadius="75">
+                            <TextBlock Text="DB 연동, 라이브러리 사용" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border-->
+                        <c1:C1RadialGauge x:Name="radialGauge_aim1"
+                                Value="{Binding Aim, UpdateSourceTrigger=PropertyChanged}"
+                                SweepAngle="360" 
+                                StartAngle="0"
+                                IsReadOnly="True"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Width="150"
+                                Height="150"
+                                Grid.Column="1"
+                                Grid.Row="1"/>
+                    </StackPanel>
+
+                    <!-- 생산 관련 정보 -->
+                    <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="목표 생산량" Width="100" VerticalAlignment="Center"/>
+                            <TextBox Width="150" Text="100"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="현재 생산량" Width="100" VerticalAlignment="Center"/>
+                            <TextBox Width="150" Text="{Binding CurrentProduction, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="작업자" Width="100" VerticalAlignment="Center"/>
+                            <TextBox Width="150" Text="{Binding WorkerName, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="불량 수량" Width="100" VerticalAlignment="Center"/>
+                            <TextBox Width="150" Text="{Binding DefectCount, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="불량률" Width="100" VerticalAlignment="Center"/>
+                            <TextBox Width="150" Text="{Binding DefectRate, Mode=OneWay}" />
+                            <!-- 불량수량 / 검사수량 * 100  = 불량률 / 현재 생산량 = 검사수량 -->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="설비" Width="180" Margin="0,-2,0,2">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <UniformGrid Columns="2" Margin="10">
+                        <!-- PCB loader 내용 -->
+                        <Border BorderBrush="Gray" BorderThickness="1" Width="330" Height="180" >
+                            <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- 설비 이름, 이미지 -->
+                                <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                    <TextBlock Text="PCB loader" FontWeight="Bold" FontSize="14" />
+                                    <Image Source="pack://application:,,,/Resources/PCB_loader.png" Width="150" Height="150" HorizontalAlignment="Left" />
+                                </StackPanel>
+
+                                <!-- 내용 -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Text="누적 운전 시간" FontSize="12"/>
+                                    <TextBox Width="100" Text="{Binding FacilityVM.PcbLoader.Running_Time}" IsReadOnly="True" Margin="0,0,0,0"/>
+
+                                    <TextBlock Text="최근 점검일" FontSize="12"/>
+                                    <TextBox Width="100" Text="{Binding FacilityVM.PcbLoader.Recent_Check,StringFormat='yyyy-MM-dd'}" IsReadOnly="True" Margin="0,0,0,0"/>
+
+                                    <TextBlock Text="제조사" FontSize="12"/>
+                                    <TextBox Width="100" Text="{Binding FacilityVM.PcbLoader.Manufacturer}" IsReadOnly="True" Margin="0,0,0,0"/>
+
+                                    <TextBlock Text="모델명" FontSize="12"/>
+                                    <TextBox Width="100" Text="{Binding FacilityVM.PcbLoader.Model_Name}" IsReadOnly="True" Margin="0,0,0,0"/>
+
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Screen Printer 내용 -->
+                        <Border BorderBrush="Gray" BorderThickness="1" Width="330" Height="180">
+                            <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- 설비 이름, 이미지 -->
+                                <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                    <TextBlock Text="Screen Printer" FontWeight="Bold" FontSize="14" />
+                                    <Image Source="/Resources/screen_printer.png" Width="150" Height="150" HorizontalAlignment="Left" />
+                                </StackPanel>
+
+                                <!-- 내용 -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Text="누적 운전 시간" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ScreenPrinter.Running_Time}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="최근 점검일" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ScreenPrinter.Recent_Check, StringFormat='yyyy-MM-dd'}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="제조사" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ScreenPrinter.Manufacturer}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="모델명" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ScreenPrinter.Model_Name}" IsReadOnly="True"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- chip mounter 내용 -->
+                        <Border BorderBrush="Gray" BorderThickness="1" Width="330" Height="180">
+                            <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- 설비 이름, 이미지 -->
+                                <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                    <TextBlock Text="Chip Mounter" FontWeight="Bold" FontSize="14" />
+                                    <Image Source="/Resources/chip_mounter.png" Width="150" Height="150" HorizontalAlignment="Left" />
+                                </StackPanel>
+
+                                <!-- 내용 -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Text="누적 운전 시간" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ChipMounter.Running_Time}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="최근 점검일" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ChipMounter.Recent_Check, StringFormat='yyyy-MM-dd'}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="제조사" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ChipMounter.Manufacturer}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="모델명" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ChipMounter.Manufacturer}" IsReadOnly="True"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Reflow Oven 내용 -->
+                        <Border BorderBrush="Gray" BorderThickness="1" Width="330" Height="180">
+                            <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- 설비 이름, 이미지 -->
+                                <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                    <TextBlock Text="Reflow Oven" FontWeight="Bold" FontSize="14" />
+                                    <Image Source="/Resources/reflow_oven.png" Width="150" Height="150" HorizontalAlignment="Left" />
+                                </StackPanel>
+
+                                <!-- 내용 -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Text="누적 운전 시간" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ReflowOven.Running_Time}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="최근 점검일" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ReflowOven.Recent_Check, StringFormat='yyyy-MM-dd'}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="제조사" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ReflowOven.Manufacturer}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="모델명" FontSize="12"/>
+                                    <TextBox Width="100" Margin="0,0,0,0" Text="{Binding FacilityVM.ReflowOven.Model_Name}" IsReadOnly="True"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </UniformGrid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="제품이력" Width="170">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="473*"/>
+                            <ColumnDefinition Width="185*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <!-- 스크롤 가능 영역 -->
+                        </Grid.RowDefinitions>
+
+                        <!-- 제조 기록 텍스트 -->
+                        <TextBlock Text="제조 기록" FontSize="16" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+                        <!-- 제조 기록 테이블 -->
+                        <DataGrid ItemsSource="{Binding ProductVM.Products}" AutoGenerateColumns="False"
+                              Background="White" Height="200"
+                              CanUserResizeColumns="True" CanUserSortColumns="True"
+                              SelectionMode="Extended" SelectionUnit="FullRow"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="0,26,0,0" Grid.RowSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="제조 번호" Binding="{Binding TaskId}" Width="100"/>
+                                <DataGridTextColumn Header="Serial Number" Binding="{Binding QR_Code}" Width="150"/>
+                                <DataGridTextColumn Header="반/완제품" Binding="{Binding Status}" Width="100"/>
+                                <DataGridTextColumn Header="날짜" Binding="{Binding Production_Time, StringFormat=yyyy-MM-dd}" Width="130"/>
+                                <DataGridCheckBoxColumn Header="불량 여부" Binding="{Binding Defective_or_not}" Width="80"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- 불량 정보 텍스트 -->
+                        <TextBlock Text="불량 정보" FontSize="16" FontWeight="Bold" Margin="0,5,0,10" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+                        <!-- 불량 정보 테이블 -->
+                        <DataGrid Grid.Row="3" ItemsSource="{Binding DefectVM.Defects}" AutoGenerateColumns="False"
+                              Background="White" Height="200"
+                              CanUserResizeColumns="True" CanUserSortColumns="True"
+                              SelectionMode="Extended" SelectionUnit="FullRow"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="제조 번호" Binding="{Binding TaskId}" Width="100"/>
+                                <DataGridTextColumn Header="Serial Number" Binding="{Binding QR_Code}" Width="150"/>
+                                <DataGridTextColumn Header="반/완제품" Binding="{Binding Status}" Width="100"/>
+                                <DataGridTextColumn Header="날짜" Binding="{Binding Production_Time, StringFormat=yyyy-MM-dd}" Width="130"/>
+                                <DataGridTextColumn Header="불량 위치" Binding="{Binding Location}" Width="80"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
