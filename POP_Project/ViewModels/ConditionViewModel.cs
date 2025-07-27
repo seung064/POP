@@ -144,42 +144,7 @@ namespace POP_Project.ViewModels
                 poll.Add(pollution);
                 if (poll.Count > 10) poll.RemoveAt(0);
             });
-            //try
-            //{
-            //    // 최신 30개 데이터 조회
-            //    var latestData = await conditionRepo.GetLatestConditionsAsync(30);
 
-            //    // 시리즈 값 초기화
-            //    var tempValues = new ChartValues<double>();
-            //    var humiValues = new ChartValues<double>();
-            //    var pollValues = new ChartValues<double>();
-            //    var labels = new ObservableCollection<string>();
-
-            //    foreach (var cd in latestData)
-            //    {
-            //        tempValues.Add(cd.Temperature);
-            //        humiValues.Add(cd.Humidity);
-            //        pollValues.Add(cd.Pollution);
-            //        labels.Add(cd.Create_date.ToString("HH:mm:ss"));
-            //    }
-
-            //    Application.Current.Dispatcher.Invoke(() =>
-            //    {
-            //        // 차트 시리즈 갱신
-            //        SeriesCollection[0].Values = tempValues;
-            //        SeriesCollection[1].Values = humiValues;
-            //        SeriesCollection[2].Values = pollValues;
-
-            //        // X축 레이블 갱신
-            //        XLabels.Clear();
-            //        foreach (var label in labels)
-            //            XLabels.Add(label);
-            //    });
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("차트 업데이트 중 오류 발생: " + ex.Message);
-            //}
         }
     }
 }

@@ -8,10 +8,11 @@ namespace POP_Project.Models
 {
     public class Defect
     {
-        public int TaskId { get; set; }
-        public string QR_Code { get; set; }
+        public int QR_Code { get; set; }
+        public string Name { get; set; }
         public string Status { get; set; }
-        public DateTime Production_Time { get; set; }
+        public DateTime Time_defect { get; set; }
         public int Location { get; set; }
+        public string Class_defect { get; set; }
     }
 }

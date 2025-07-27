@@ -41,6 +41,7 @@ namespace POP_Project.ViewModels
         }
 
         //public DbConfig DbConfig { get; private set; } = new DbConfig(); // 인수인계용
+        private ChartsViewModel ChartsVM;
 
         [RelayCommand]
         private async Task Login()
@@ -56,13 +57,12 @@ namespace POP_Project.ViewModels
 
                     // DB 계정 정보 저장 - 인수인계용
                     AppLoginInfo.CurrentUserId = u.Id;
-                    AppLoginInfo.CurrentUserPwd = u.Pwd;
                     AppLoginInfo.CurrentUserName = u.Name;
 
                     MessageBox.Show($"{u.Name}님 환영합니다", "로그인", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainWindow.Instance.Navigate(new MainPage());
                     MainWindow.Instance.MainVM.IsMenuOpen = false;
-
+                    this.ChartsVM.WorkerName = AppLoginInfo.CurrentUserId;
                     MainWindow.Instance.MainVM.IsHamburgerVisible = true;
                     break;
                 }

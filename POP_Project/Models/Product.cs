@@ -8,8 +8,8 @@ namespace POP_Project.Models
 {
     public class Product
     {
-        public int TaskId { get; set; }
-        public string QR_Code { get; set; }
+        public int QR_Code { get; set; }
+        public string Name { get; set; }
         public string Status { get; set; }
         public DateTime Production_Time { get; set; }
         public bool Defective_or_not { get; set; }

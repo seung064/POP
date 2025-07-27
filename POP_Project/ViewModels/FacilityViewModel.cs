@@ -15,10 +15,14 @@ namespace POP_Project.ViewModels
     {
         private FacilityRepository facilityRepo = new FacilityRepository();
 
-        [ObservableProperty] private Facility pcbLoader;
-        [ObservableProperty] private Facility screenPrinter;
-        [ObservableProperty] private Facility chipMounter;
-        [ObservableProperty] private Facility reflowOven;
+        [ObservableProperty]
+        private Facility pcbLoader;
+        [ObservableProperty]
+        private Facility screenPrinter;
+        [ObservableProperty]
+        private Facility chipMounter;
+        [ObservableProperty]
+        private Facility reflowOven;
 
         public async Task LoadFacilitiesAsync()
         {

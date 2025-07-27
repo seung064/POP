@@ -39,5 +39,6 @@ namespace POP_Project.ViewModels
                 Defects.Add(defect);
             }
         }
+
     }
 }

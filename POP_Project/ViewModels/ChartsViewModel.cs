@@ -47,15 +47,15 @@ namespace POP_Project.ViewModels
             timer.Tick += (s, e) => OnPropertyChanged(nameof(Efficiency_Line2));
             timer.Tick += (s, e) => OnPropertyChanged(nameof(DefectRate));
             timer.Tick += (s, e) => OnPropertyChanged(nameof(Efficiency_Average));
-
             timer.Tick += (s, e) => LoadMemoAsync();
-
+            timer.Tick += (s, e) => WorkerNameIn();
 
             timer.Start();
         }
 
         public void UpdateProductionCount() // 현재 생산량 CurrentProduction
         {
+            //string connStr = "server=localhost;user=userhs;password=1234;database=pop_project;";
             string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -68,6 +68,7 @@ namespace POP_Project.ViewModels
 
         public void UpdateDefectCount() // 불량 수량 DefectCount
         {
+            //string connStr = "server=localhost;user=userhs;password=1234;database=pop_project;";
             string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -131,6 +132,7 @@ namespace POP_Project.ViewModels
 
         public void UpdateLine1GoodCount() // 1번 라인 양품생산
         {
+            //string connStr = "server=localhost;user=userhs;password=1234;database=pop_project;";
             string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -142,6 +144,7 @@ namespace POP_Project.ViewModels
         }
         public void UpdateLine2GoodCount() // 2번 라인 양품생산
         {
+            //string connStr = "server=localhost;user=userhs;password=1234;database=pop_project;";
             string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -178,7 +181,8 @@ namespace POP_Project.ViewModels
 
         public void Update() // 불량 수량 DefectCount
         {
-            string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
+            //string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
+            string connStr = "server=localhost;user=userhs;password=1234;database=pop_project;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
@@ -188,7 +192,7 @@ namespace POP_Project.ViewModels
             }
         }
         [ObservableProperty]
-        private string workerName = AppLoginInfo.CurrentUserId;
+        private string workerName = AppLoginInfo.CurrentUserName;
 
 
 
@@ -196,6 +200,10 @@ namespace POP_Project.ViewModels
 
         [ObservableProperty]
         private string handoverText;
+        public void WorkerNameIn()
+        {
+            WorkerName = AppLoginInfo.CurrentUserName;
+        }
 
         [ObservableProperty]
         private string allHandoverText;
@@ -203,6 +211,7 @@ namespace POP_Project.ViewModels
 
         public async Task LoadMemoAsync()
         {
+            //string connStr = "server=localhost;user=userhs;password=1234;database=pop_project;";
             string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -229,7 +238,8 @@ namespace POP_Project.ViewModels
         [RelayCommand]
         public async Task SaveMemoAsync()
         {
-            string connStr = $"server=127.0.0.1;user=root;password=1111;database=pop_project;";
+            //string connStr = $"server=127.0.0.1;user=userhs;password=1234;database=pop_project;";
+            string connStr = "server=localhost;user=root;password=1111;database=pop_project;";
 
             using var conn = new MySqlConnection(connStr);
             await conn.OpenAsync();

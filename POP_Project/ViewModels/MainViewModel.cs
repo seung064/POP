@@ -4,7 +4,9 @@ using POP_Project.Models;
 using POP_Project.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,7 +39,7 @@ namespace POP_Project.ViewModels
         [ObservableProperty]
         private PerformanceViewModel performanceVM = new PerformanceViewModel();
 
-        
+
 
 
         [RelayCommand]
@@ -46,15 +48,6 @@ namespace POP_Project.ViewModels
             // 햄버거 버튼 클릭 시 메뉴 열기 로직
             IsMenuOpen = !IsMenuOpen;
         }
-
-        
-        [RelayCommand]
-        private void NavigateVision()
-        {
-            // VisionPage로 이동
-            MainWindow.Instance.Navigate(new VisionPage());
-        }
-
 
         [RelayCommand]
         private void NavigatePerformance()
@@ -75,6 +68,17 @@ namespace POP_Project.ViewModels
                 IsMenuOpen = false;
                 IsHamburgerVisible = false;
             }
+        }
+
+        [RelayCommand]
+        private void ViewerProcess()
+        {
+            Process viewerProcess = new Process();
+            viewerProcess.StartInfo.FileName = "python";
+            viewerProcess.StartInfo.Arguments = "OpenCV_Viewer.py";
+            viewerProcess.StartInfo.WorkingDirectory = @".";
+            viewerProcess.Start();
+            MessageBox.Show("뷰어 실행완료");
         }
     }
 }

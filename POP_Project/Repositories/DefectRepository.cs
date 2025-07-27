@@ -1,14 +1,15 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using MySql.Data.Types;
+using POP_Project.Models;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POP_Project.Models;
-using MySql.Data.MySqlClient;
-using MySql.Data.Types;
-using System.Data;
 using System.Threading.Tasks;
-using System.Configuration;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace POP_Project.Repositories
 {
@@ -32,11 +33,17 @@ namespace POP_Project.Repositories
             {
                 defects.Add(new Defect
                 {
-                    TaskId = reader.GetInt32("taskId"),
-                    QR_Code = reader.GetString(reader.GetOrdinal("qr_code")),
+                    Time_defect = reader.IsDBNull(reader.GetOrdinal("time_defect")) ? DateTime.MinValue : reader.GetDateTime("time_defect"),
+                    QR_Code = reader.GetInt32(reader.GetOrdinal("qr_code")),
                     Status = reader.GetString(reader.GetOrdinal("status")),
-                    Production_Time = reader.GetDateTime("production_time"),
-                    Location = reader.GetInt32("location")
+                    Name = reader.GetString(reader.GetOrdinal("name")),
+                    Class_defect = reader.IsDBNull(reader.GetOrdinal("class_defect"))
+                       ? "NULL"
+                       : reader.GetString(reader.GetOrdinal("class_defect")),
+
+                    Location = reader.IsDBNull(reader.GetOrdinal("location"))
+                       ? 0
+                       : reader.GetInt32(reader.GetOrdinal("location"))
                 });
             }
 

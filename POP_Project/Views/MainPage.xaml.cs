@@ -27,11 +27,10 @@ namespace POP_Project.Views
         public MainPage()
         {
             InitializeComponent();
-
             var mainVM = MainWindow.Instance.MainVM;
             DataContext = mainVM;
 
-            // 비동기 데이터 로딩
+            //비동기 데이터 로딩
             Loaded += async (_, __) => await mainVM.FacilityVM.LoadFacilitiesAsync();
 
         }
