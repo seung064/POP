@@ -42,24 +42,26 @@ def run_camera1():
         return
     
     qr_info = {}
+    scanned_qr_codes = set()
+    scanned_defects = set()
+    
     
     while True:
         ret, frame = videocapture.read()
         if not ret:
             break
 
-        #current_time = time.time()
-
-        #if current_time - qr_check_time >=10: # n초 딜레이
-
-            #1 if not detected_qrcode: ## QR 코드가 인식되지 않은 경우에만 실행
         for code in pyzbar.decode(frame):
             try:
                 
                 #qr_code = pyzbar.decode(frame)
                 qr_code = code.data.decode('utf-8') ## 미리 저장 해둔 데이터 디코딩
+                if qr_code in scanned_qr_codes:
+                    continue
+                scanned_qr_codes.add(qr_code)
+
                 print("인식 성공 :", qr_code)
-                time.sleep(2)
+                #time.sleep(0)
                 
                 '''
                 qr_info = json.loads(qrcode) ## QR 코드 데이터를 Dict으로 변환
@@ -100,16 +102,14 @@ def run_camera1():
                             cursor.execute(update_product_query, (qr_code,))
                             cursor.execute(update_defect_query, (qr_code,))
                             db_connection.commit() # 변경사항 최종
-                            time.sleep(5)
+                            #time.sleep(0)
                         
                         else:
                             pass
-                            #update_query = f"UPDATE product SET location = '1', time_first= '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
-                            #update_product_query = f"UPDATE product SET production_time = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
-                            #update_defect_query = f"UPDATE defect SET time_first = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', class_defect = '{cls_name}' WHERE qr_code = %s"
-                            #cursor.execute(update_product_query, (qr_code,))
-                            #cursor.execute(update_defect_query, (qr_code,))
-                            time.sleep(5)
+                            update_product_query = f"UPDATE product SET defective_or_not = '0', production_time = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                            cursor.execute(update_product_query, (qr_code,))
+                            db_connection.commit()
+                            #time.sleep(0)
                         
 
                     ## dict에 위치, 불량검출, 현재시간 추가
@@ -156,11 +156,13 @@ def run_camera1():
                             cursor.execute(update_product_query, (qr_code,))
                             cursor.execute(update_defect_query, (qr_code,))
                             db_connection.commit() # 변경사항 최종 
-                            time.sleep(5)
+                            #time.sleep(0)
 
                         else:
-                            pass
-                            time.sleep(5)
+                            update_product_query = f"UPDATE product SET defective_or_not = '0', production_time = '{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}' WHERE qr_code = %s"
+                            cursor.execute(update_product_query, (qr_code,))
+                            db_connection.commit()
+                            #time.sleep(0)
                             
                     # inspection_info_second = {
                     #     "location": '2', 
