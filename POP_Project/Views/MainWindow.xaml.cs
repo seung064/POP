@@ -28,6 +28,7 @@ namespace POP_Project
         public DefectViewModel DefectVM { get; set; }
         public ChartsViewModel ChartsVM { get; set; }
 
+        public FacilityViewModel FacilityVM { get; set; }
         public MainWindow()
         {
             InitializeComponent();

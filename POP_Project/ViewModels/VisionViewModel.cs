@@ -20,7 +20,8 @@ namespace POP_Project.ViewModels
         private void NavigateBack()
         {
             // MainPage로 이동
-            MainWindow.Instance.Navigate(new MainPage(MainWindow.Instance.MainVM));
+            //MainWindow.Instance.Navigate(new MainPage(MainWindow.Instance.MainVM));
+            MainWindow.Instance.Navigate(new MainPage(MainWindow.Instance.FacilityVM));
         }
 
 
