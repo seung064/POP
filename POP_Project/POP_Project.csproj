@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\chip_mounter.png" />
+    <None Remove="Resources\PCB_loader.png" />
+    <None Remove="Resources\reflow_oven.png" />
+    <None Remove="Resources\screen_printer.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="C1.WPF.Chart" Version="9.0.20251.1102" />
+    <PackageReference Include="C1.WPF.Gauge" Version="9.0.20251.1102" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MySql.Data" Version="9.3.0" />
+    <PackageReference Include="NModbus4" Version="2.1.0" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\chip_mounter.png" />
+    <Resource Include="Resources\PCB_loader.png" />
+    <Resource Include="Resources\reflow_oven.png" />
+    <Resource Include="Resources\screen_printer.png" />
+  </ItemGroup>
+
+</Project>
