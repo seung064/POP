@@ -91,6 +91,23 @@ C#, Figma, MySQL, OpenCV, PLC, Python, WPF, Yolo
 ![image.png](Assets/image%209.png)
 
 
+## <기여한 부분>
+
+**데이터셋 제작 및 불량검출**
+
+- iVCam 어플과 OpenCV 소켓연동
+    - pickle로 프레임을 직렬화하고, struct를 통해 데이터 크기를 안정적으로 전달
+    - 지원미비로 인해 핸드폰 카메라 사용
+- qr코드 제작 및 인식
+    - QRCodeDetector보다 범용성이 좋고 디코딩 처리가 자동으로 진행되는 pyzbar 사용
+- yolo로 학습한 pt 파일을 사용하여 시각, 위치, 라벨링클래스 등의 데이터를 데이터 베이스에 전송
+
+**Dashboard, 생산 탭 UI, 데이터 도식화**
+
+- DispatcherTimer를 통해 차트, 인수인계 등의 업데이트
+- OnPropertyChanged를 사용하여 다른 값이 변경될 때마다 그에 따른 차트 변화
+
+
 
 # 🎨디자인
 
@@ -222,13 +239,7 @@ YOLO 학습 |
 - **원인** : **1차 불량검사**와 **2차 불량검사**에 대한 **딜레이**가 없음
 - **해결** : QR코드에 반제품/완제품을 미리 구별하여 DB에 Update 후 **반제품 → 1차 검사**만 진행 / **완제품 → 2차 검사**만 진행
 
-## Git merge 및 충돌 문제
 
-- merge 충돌 파일이 40개 이상 발생
-- **원인** :
-    - **.gitignore 설정 미흡** 및 불필요한 파일을 제외하지 않음
-    - .vs, bin, obj 등의 빌드, 캐시 파일이 Github에 올라감
-- **해결** : **git rm —cached 명령어로 Git에 스테이징 된 파일 삭제 및 .gitignore파일 수정**
 
 # 🔁회고록
 
